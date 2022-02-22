@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), MainFragment.MainFragmentInteractionLi
 
         builder.setPositiveButton(positiveButtonTitle) { dialog, _ ->
             dialog.dismiss()
-            val noteList = NoteList(listTitleEditText.text.toString())
+            val noteList = NoteList(listTitleEditText.text.toString(),"input your data")
             viewModel.saveList(noteList)
             showListDetail(noteList)
         }
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), MainFragment.MainFragmentInteractionLi
 
     private fun showListDetail(list: NoteList) {
         val listDetailIntent = Intent(this, ListDetailActivity::class.java)
-        listDetailIntent.putExtra(INTENT_LIST_KEY, list)
+        listDetailIntent.putExtra(INTENT_LIST_KEY, list.Notes)
         startActivity(listDetailIntent)
     }
 

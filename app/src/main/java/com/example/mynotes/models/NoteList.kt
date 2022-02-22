@@ -3,10 +3,11 @@ package com.example.mynotes.models
 import android.os.Parcel
 import android.os.Parcelable
 
-class NoteList(val name: String, val Notes: ArrayList<String> = ArrayList()) : Parcelable {
+/*
+data class NoteList(val name: String, val Notes: ArrayList<String> = ArrayList()) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
-        parcel.createStringArrayList()!!
+        parcel.createStringArrayList()!!,
     ) {
     }
 
@@ -27,3 +28,5 @@ class NoteList(val name: String, val Notes: ArrayList<String> = ArrayList()) : P
         }
     }
 }
+ */
+data class NoteList(val name: String, var Notes: String){}

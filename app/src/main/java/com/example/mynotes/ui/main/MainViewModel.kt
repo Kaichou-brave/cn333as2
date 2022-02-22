@@ -16,8 +16,8 @@ class MainViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
         val NoteLists = ArrayList<NoteList>()
 
         for (NoteList in sharedPreferencesContents) {
-            val itemsHashSet = ArrayList(NoteList.value as HashSet<String>)
-            val list = NoteList(NoteList.key, itemsHashSet)
+
+            val list = NoteList(NoteList.key, NoteList.value.toString())
             NoteLists.add(list)
         }
 
@@ -25,7 +25,7 @@ class MainViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     }
 
     fun saveList(list: NoteList) {
-        sharedPreferences.edit().putStringSet(list.name, list.Notes.toHashSet()).apply()
+        sharedPreferences.edit().putString(list.name, list.Notes).apply()
         lists.add(list)
         onListAdded.invoke()
     }
