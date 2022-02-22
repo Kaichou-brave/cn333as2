@@ -13,14 +13,15 @@ class MainViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
 
     private fun retrieveLists(): MutableList<NoteList> {
         val sharedPreferencesContents = sharedPreferences.all
-        val NoteList = ArrayList<NoteList>()
+        val NoteLists = ArrayList<NoteList>()
 
         for (NoteList in sharedPreferencesContents) {
             val itemsHashSet = ArrayList(NoteList.value as HashSet<String>)
             val list = NoteList(NoteList.key, itemsHashSet)
+            NoteLists.add(list)
         }
 
-        return NoteList
+        return NoteLists
     }
 
     fun saveList(list: NoteList) {
