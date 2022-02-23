@@ -14,7 +14,7 @@ class ListDetailFragment : Fragment() {
         fun newInstance() = ListDetailFragment()
     }
 
-    private lateinit var viewModel: ListDetialViewModel
+    private lateinit var viewModel: ListDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +25,7 @@ class ListDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[ListDetialViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[ListDetailViewModel::class.java]
         // TODO: Use the ViewModel
     }
 
