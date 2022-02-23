@@ -3,7 +3,7 @@ package com.example.mynotes.models
 import android.os.Parcel
 import android.os.Parcelable
 
-class NoteList(val name: String,val task: ArrayList<String> = ArrayList()) : Parcelable {
+class NoteList(val name: String,val notes: ArrayList<String> = ArrayList()) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.createStringArrayList()!!
@@ -12,7 +12,7 @@ class NoteList(val name: String,val task: ArrayList<String> = ArrayList()) : Par
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
-        parcel.writeStringList(task)
+        parcel.writeStringList(notes)
     }
 
     override fun describeContents() = 0

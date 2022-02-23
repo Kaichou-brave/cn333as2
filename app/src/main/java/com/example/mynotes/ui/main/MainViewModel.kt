@@ -24,7 +24,7 @@ class MainViewModel(private val sharedPreference: SharedPreferences) : ViewModel
     }
 
     fun saveList(list: NoteList) {
-        sharedPreference.edit().putStringSet(list.name, list.task.toHashSet()).apply()
+        sharedPreference.edit().putStringSet(list.name, list.notes.toHashSet()).apply()
         lists.add(list)
         onListAdded.invoke()
     }

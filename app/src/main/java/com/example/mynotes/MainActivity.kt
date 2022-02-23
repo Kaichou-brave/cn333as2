@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), MainFragment.MainFragmentInteractionLi
                 add(mainFragmentId, mainFragment)
             }
         }
-        binding.taskListAddButton?.setOnClickListener {
+        binding.taskListAddButton.setOnClickListener {
             showCreateListDialog()
         }
     }
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity(), MainFragment.MainFragmentInteractionLi
 
     companion object {
         const val INTENT_LIST_KEY = "list"
-        var LIST_NAME = "ListMaker"
+        var LIST_NAME = "My notes"
     }
 
     override fun listItemTapped(list: NoteList) {
