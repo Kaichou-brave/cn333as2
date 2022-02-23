@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import com.example.mynotes.models.NoteList
 
-class MainViewModel(private val sharedPreferences: SharedPreferences) : ViewModel() {
+class MainViewModel(private val sharedPreference: SharedPreferences) : ViewModel() {
     lateinit var onListAdded: (() -> Unit)
 
     val lists: MutableList<NoteList> by lazy {
@@ -12,20 +12,19 @@ class MainViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     }
 
     private fun retrieveLists(): MutableList<NoteList> {
-        val sharedPreferencesContents = sharedPreferences.all
-        val NoteLists = ArrayList<NoteList>()
+        val sharedPreferenceContents = sharedPreference.all
+        val noteLists = ArrayList<NoteList>()
 
-        for (NoteList in sharedPreferencesContents) {
-
-            val list = NoteList(NoteList.key, NoteList.value.toString())
-            NoteLists.add(list)
+        for (taskList in sharedPreferenceContents) {
+            val itemHashSet = ArrayList(taskList.value as HashSet<String>)
+            val list = NoteList(taskList.key, itemHashSet)
+            noteLists.add(list)
         }
-
-        return NoteLists
+        return noteLists
     }
 
     fun saveList(list: NoteList) {
-        sharedPreferences.edit().putString(list.name, list.Notes).apply()
+        sharedPreference.edit().putStringSet(list.name, list.task.toHashSet()).apply()
         lists.add(list)
         onListAdded.invoke()
     }

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.preference.PreferenceManager
+import com.example.mynotes.MainActivity
 import com.example.mynotes.databinding.ListDetailFragmentBinding
 
 class ListDetailFragment : Fragment() {
@@ -29,10 +29,14 @@ class ListDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            ListDetialViewModelFactory(PreferenceManager.getDefaultSharedPreferences(requireActivity()))
-        )[ListDetailViewModel::class.java]
-    }
+        viewModel = ViewModelProvider(requireActivity())[ListDetailViewModel::class.java]
+        try {
+            (activity as MainActivity?)?.LoadEditText()
+        } catch (e: ClassCastException) {
+            null
+        } finally {
 
+        }
+
+    }
 }

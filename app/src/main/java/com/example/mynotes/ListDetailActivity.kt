@@ -1,26 +1,26 @@
 package com.example.mynotes
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.example.mynotes.databinding.ListDetailActivityBinding
-import com.example.mynotes.databinding.ListDetailFragmentBinding
 import com.example.mynotes.models.NoteList
 import com.example.mynotes.ui.detail.ListDetailFragment
-import com.example.mynotes.ui.detail.ListDetailViewModel
+
 
 class ListDetailActivity : AppCompatActivity() {
 
     lateinit var list: NoteList
-    private lateinit var binding: ListDetailActivityBinding
-    private lateinit var viewModel: ListDetailViewModel
+    lateinit var listDetailEditText: EditText
+    lateinit var sharedPreference: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[ListDetailViewModel::class.java]
         setContentView(R.layout.list_detail_activity)
-        viewModel.list = intent.getParcelableExtra(MainActivity.INTENT_LIST_KEY)!!
-        title = viewModel.list.name
+
+        list = intent.getParcelableExtra(MainActivity.INTENT_LIST_KEY)!!
+        title = list.name
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -28,4 +28,28 @@ class ListDetailActivity : AppCompatActivity() {
                 .commitNow()
         }
     }
+
+    public override fun onPostCreate(savedInstanceState: Bundle?) {
+
+        sharedPreference = getSharedPreferences("", MODE_PRIVATE)
+        listDetailEditText = findViewById(R.id.list_detail_edit_text)
+
+        var loadText = sharedPreference.getString(list.name, "")
+
+        listDetailEditText.setText(loadText)
+        super.onPostCreate(savedInstanceState)
+    }
+
+    override fun onBackPressed() {
+
+        sharedPreference = getSharedPreferences("", MODE_PRIVATE)
+        listDetailEditText = findViewById(R.id.list_detail_edit_text)
+
+        var edited = listDetailEditText.text.toString()
+
+        listDetailEditText.setText(edited)
+        sharedPreference.edit().putString(list.name, edited).apply()
+        super.onBackPressed()
+    }
+
 }

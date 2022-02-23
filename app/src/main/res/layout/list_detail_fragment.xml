@@ -10,10 +10,10 @@
 
     <EditText
             android:layout_width="380dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:inputType="none|textMultiLine|textCapSentences"
             android:ems="10"
-            android:id="@+id/editText"
+            android:id="@+id/list_detail_edit_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:verticalScrollbarPosition="right" app:layout_constraintTop_toTopOf="parent"
