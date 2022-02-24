@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             app:srcCompat="@android:drawable/ic_menu_add"
-            android:id="@+id/task_list_add_button"
+            android:id="@+id/note_list_add_button"
             android:layout_gravity="bottom|right"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"/>

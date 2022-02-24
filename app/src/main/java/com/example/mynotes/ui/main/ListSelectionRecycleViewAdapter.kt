@@ -24,7 +24,7 @@ class ListSelectionRecycleViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ListSelectionViewHolder, position: Int) {
-        holder.binding.itemNumber.text = (position + 1).toString()
+        //holder.binding.itemNumber.text = (position + 1).toString()
         holder.binding.itemName.text = lists[position].name
         holder.itemView.setOnClickListener {
             clickListener.listItemClicked(lists[position])

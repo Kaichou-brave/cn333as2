@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), MainFragment.MainFragmentInteractionLi
                 add(mainFragmentId, mainFragment)
             }
         }
-        binding.taskListAddButton.setOnClickListener {
+        binding.noteListAddButton.setOnClickListener {
             showCreateListDialog()
         }
     }
